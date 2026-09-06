@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Ground
+  - Water
+  - Enemy
+  - PlayerBullet
+  - EnemyBullet
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - EnemyDetection
+  - PlayerBullet
+  - Player
+  - Enemy
+  - EnemyBullet
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Water
+    uniqueID: 1862946669
+    locked: 0
+  - name: Ground
+    uniqueID: 3299025269
+    locked: 0
+  - name: Bullet
+    uniqueID: 3859502367
+    locked: 0
+  - name: EnemyDetection
+    uniqueID: 2639100329
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  - Ground
+  - Water
+  m_MigratedRenderPipelines: []
