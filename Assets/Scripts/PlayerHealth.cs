@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -9,7 +10,8 @@ public class PlayerHealth : MonoBehaviour
 
     public static PlayerHealth instant;
 
-    public event Action<int, int> OnHealthChanged; // (currentHealth, maxHealth)
+    public event Action<int, int> OnHealthChanged;
+    public event Action OnPlayerDied; // se déclenche après l'anim de mort
 
     private Animator animator;
 
@@ -51,5 +53,24 @@ public class PlayerHealth : MonoBehaviour
 
         PlayerController pc = GetComponent<PlayerController>();
         if (pc != null) pc.enabled = false;
+
+        StartCoroutine(DeathSequence());
+    }
+
+    private System.Collections.IEnumerator DeathSequence()
+    {
+        float delay = GetDeathClipLength();
+        yield return new WaitForSeconds(delay);
+        OnPlayerDied?.Invoke();
+    }
+
+    private float GetDeathClipLength()
+    {
+        if (animator == null || animator.runtimeAnimatorController == null) return 1f;
+
+        var deathClip = animator.runtimeAnimatorController.animationClips
+            .FirstOrDefault(c => c.name.ToLower().Contains("death"));
+
+        return deathClip != null ? deathClip.length : 1f;
     }
 }

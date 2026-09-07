@@ -12,7 +12,7 @@ public class RangedEnemy : MonoBehaviour
     public Transform firePoint;
 
     [Header("Zone")]
-    public float zoneRange = 3f; // distance max autorisée depuis le point de départ (si tu veux qu'il puisse légèrement se repositionner ; sinon laisse-le immobile)
+    public float zoneRange = 3f; // distance max autorisée depuis le point de départ
 
     [SerializeField]
     private DetectionZone detectionZone;
@@ -20,11 +20,11 @@ public class RangedEnemy : MonoBehaviour
     private Transform player;
     private bool playerDetected = false;
     private float lastAttackTime = -999f;
-    private Animator animator; // optionnel, peut rester null si pas d'Animator
+    private Animator animator;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>(); // ne plante pas si absent, juste null
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
