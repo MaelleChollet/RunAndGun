@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class WinUI : MonoBehaviour
 {
-    [Tooltip("Le panneau Victoire. Doit être désactivé au départ dans la scène.")]
+    [Tooltip("Le panneau Victoire.")]
     public GameObject winPanel;
+
+    [Tooltip("Texte affichant le nombre de cadeaux récupérés en fin de partie.")]
+    public TextMeshProUGUI giftsCollectedText;
 
     private void Start()
     {
@@ -33,6 +37,15 @@ public class WinUI : MonoBehaviour
         {
             winPanel.SetActive(true);
             Time.timeScale = 0f;
+            UpdateGiftsText();
+        }
+    }
+
+    private void UpdateGiftsText()
+    {
+        if (giftsCollectedText != null && GiftManager.instance != null)
+        {
+            giftsCollectedText.text = $"{GiftManager.instance.CollectedGifts} / {GiftManager.instance.totalGifts}";
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 public class GiftManager : MonoBehaviour
 {
     public static GiftManager instance;
+    public int CollectedGifts => collectedGifts;
 
     [HideInInspector] public int totalGifts = 3;
     private int collectedGifts = 0;

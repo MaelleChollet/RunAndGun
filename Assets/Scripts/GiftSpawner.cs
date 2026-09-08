@@ -57,7 +57,8 @@ public class GiftSpawner : MonoBehaviour
 
         int randomIndex = Random.Range(0, availablePoints.Count);
         Transform chosenPoint = availablePoints[randomIndex];
-        availablePoints.RemoveAt(randomIndex);
+
+        availablePoints.RemoveAll(p => p.position == chosenPoint.position);
 
         Instantiate(giftPrefab, chosenPoint.position, Quaternion.identity);
         giftsSpawnedSoFar++;

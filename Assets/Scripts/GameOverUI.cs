@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameOverUI : MonoBehaviour
 {
-    [Tooltip("Le panneau (GameObject) contenant le texte 'Game Over' et le bouton Rejouer. Doit être désactivé au départ dans la scène.")]
+    [Tooltip("Le panneau (GameObject) contenant le texte 'Game Over' et le bouton Rejouer.")]
     public GameObject gameOverPanel;
+
+    [Tooltip("Texte affichant le nombre de cadeaux récupérés en fin de partie.")]
+    public TextMeshProUGUI giftsCollectedText;
 
     private void Start()
     {
@@ -32,13 +36,22 @@ public class GameOverUI : MonoBehaviour
         if (gameOverPanel != null && !gameOverPanel.activeSelf)
         {
             gameOverPanel.SetActive(true);
-            Time.timeScale = 0f; // met le jeu en pause derrière l'écran Game Over
+            Time.timeScale = 0f;
+            UpdateGiftsText();
+        }
+    }
+
+    private void UpdateGiftsText()
+    {
+        if (giftsCollectedText != null && GiftManager.instance != null)
+        {
+            giftsCollectedText.text = $"{GiftManager.instance.CollectedGifts} / {GiftManager.instance.totalGifts}";
         }
     }
 
     public void Replay()
     {
-        Time.timeScale = 1f; // sinon la scène rechargée reste en pause
+        Time.timeScale = 1f;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
